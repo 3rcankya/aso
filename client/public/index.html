@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#1976d2" />
+    
+    <!-- Primary Meta Tags -->
+    <title>ASO - Profesyonel Oto Servis Hizmetleri</title>
+    <meta name="title" content="ASO - Profesyonel Oto Servis Hizmetleri">
+    <meta name="description" content="20+ yıllık deneyim, uzman ekip ve modern ekipmanlarımızla aracınız emin ellerde. Hemen online randevu alın, ayrıcalıklı hizmeti yaşayın.">
+    <meta name="keywords" content="oto servis, araç bakım, araç onarım, araç servisi, online randevu, araç tamir">
+    <meta name="author" content="ASO">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aso.com/">
+    <meta property="og:title" content="ASO - Profesyonel Oto Servis Hizmetleri">
+    <meta property="og:description" content="20+ yıllık deneyim, uzman ekip ve modern ekipmanlarımızla aracınız emin ellerde. Hemen online randevu alın, ayrıcalıklı hizmeti yaşayın.">
+    <meta property="og:image" content="%PUBLIC_URL%/logo512.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aso.com/">
+    <meta property="twitter:title" content="ASO - Profesyonel Oto Servis Hizmetleri">
+    <meta property="twitter:description" content="20+ yıllık deneyim, uzman ekip ve modern ekipmanlarımızla aracınız emin ellerde. Hemen online randevu alın, ayrıcalıklı hizmeti yaşayın.">
+    <meta property="twitter:image" content="%PUBLIC_URL%/logo512.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- PWA Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ASO">
+    
+    <!-- Preconnect to API -->
+    <link rel="preconnect" href="https://api.aso.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Performance -->
+    <link rel="dns-prefetch" href="https://api.aso.com">
+    
+    <!-- Custom Styles -->
+    <style>
+      /* Loading Indicator */
+      #root:empty {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #root:empty::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #1976d2;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    <!-- Dinamik favicon için script -->
+    <script>
+      window.updateFavicon = function(url) {
+        if (!url) return;
+        
+        // Tüm favicon elementlerini güncelle
+        const faviconElements = document.querySelectorAll("link[rel*='icon']");
+        faviconElements.forEach(element => {
+          element.href = url;
+        });
+
+        // Apple touch icon'u güncelle
+        const appleTouchIcon = document.querySelector("link[rel='apple-touch-icon']");
+        if (appleTouchIcon) {
+          appleTouchIcon.href = url;
+        }
+
+        // Manifest'teki icon'u güncelle
+        const manifestLink = document.querySelector("link[rel='manifest']");
+        if (manifestLink) {
+          fetch(manifestLink.href)
+            .then(response => response.json())
+            .then(manifest => {
+              manifest.icons = manifest.icons.map(icon => ({
+                ...icon,
+                src: url
+              }));
+              const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+              manifestLink.href = URL.createObjectURL(blob);
+            })
+            .catch(error => console.error('Manifest güncellenirken hata:', error));
+        }
+
+        // Tarayıcı önbelleğini temizle
+        const timestamp = new Date().getTime();
+        const newUrl = url.includes('?') ? `${url}&t=${timestamp}` : `${url}?t=${timestamp}`;
+        
+        // Yeni favicon elementleri oluştur
+        const newFavicon = document.createElement('link');
+        newFavicon.rel = 'icon';
+        newFavicon.type = 'image/x-icon';
+        newFavicon.href = newUrl;
+        document.head.appendChild(newFavicon);
+      };
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <div style="text-align: center; padding: 20px; font-family: Arial, sans-serif;">
+        <h1 style="color: #1976d2; margin-bottom: 20px;">JavaScript Gerekli</h1>
+        <p style="color: #666; line-height: 1.6;">
+          Bu web uygulaması JavaScript gerektirmektedir. Lütfen tarayıcınızda JavaScript'i etkinleştirin veya JavaScript destekleyen modern bir tarayıcı kullanın.
+        </p>
+        <p style="color: #666; margin-top: 20px;">
+          <a href="https://www.enable-javascript.com/tr/" target="_blank" rel="noopener noreferrer" style="color: #1976d2; text-decoration: none;">
+            JavaScript'i nasıl etkinleştireceğinizi öğrenin →
+          </a>
+        </p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+  </body>
+</html>
